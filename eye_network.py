@@ -58,7 +58,9 @@ class WIR:
         try:
        
             with tqdm(interruptingcow.timeout(self.timeout*60),bar_format=f"Model: [ {G}{self.type if self.type != None else 'Any'}{N} ] Type: [ {G}{self.filter if self.filter != 'any' else 'Any'}{N} ] TimeOut: [ {G}{self.timeout}m{N} ]\n"):
+                
                 while True:
+                    
                     self.GET.start()
                     time.sleep(0.10)
                     self.GET.stop()
@@ -66,7 +68,6 @@ class WIR:
                     try:                 
                         if self.hexdump == False:
                             
-
                             if 'T' == self.filter[0].upper():
                                 self.DO = self.GET.results[TCP].res
                             
@@ -107,7 +108,6 @@ class WIR:
             exit()
 
         
-                
     def style(self, text):
         if 'TCP'   in text.split(): text = text.replace('TCP', f'{T}TCP{N}')
         if 'UDP'   in text.split(): text = text.replace('UDP', f'{G}UDP{N}')
