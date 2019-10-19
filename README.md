@@ -1,4 +1,4 @@
-# Eye_network
+# Eye Network
 ![alt text](https://img.shields.io/badge/Python-3_only-blue.svg "Python 3 only")
 
 This program will listen to all the connections in your device.
