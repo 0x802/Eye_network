@@ -50,8 +50,6 @@ class WIR:
         self.hexdump = HEXDUMP
         self.filter  = filter
         self.DO      = None
-
-        print(self.hexdump)
     
     def get_hex_ips(self):
 
