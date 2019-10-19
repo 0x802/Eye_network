@@ -126,7 +126,7 @@ class WIR:
 @click.option('-H','--hexdump', is_flag=True,help='Acts in the form of hexdump')
 @click.option('-f','--filter', default='any',type=click.STRING, help='Filter types TCP or UDP')
 @click.version_option(help='v0.1')
-@click.help_option(help='This for help')
+@click.help_option(help='For the assistant')
 
 def main(model, timeout, hexdump, filter):
     """This program will listen to all the connections in your device like wlan0 or eth0, etc ..."""
