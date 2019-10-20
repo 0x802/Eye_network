@@ -20,6 +20,12 @@ except ImportError:
     exit()
     
 try:
+    from subprocess import getoutput
+except ImportError:
+    print("[ - ] The module `subprocess` is Not Find\n[ - ] Please Install `subprocess` Library")
+    exit()
+    
+try:
 
     from scapy.layers.inet  import * # IP, TCP , ICMP , etc.. 
     from scapy.sendrecv     import * # send, sniff, AsyncSniffer, sr1
@@ -76,11 +82,10 @@ class WIR:
 
                             for vlu in self.DO:
                                 # print all infromation for ip or port or mac
-                                print('%s[ %s ]%s %s' % 
-                                    (B,conf.color_theme.id(self.SUM, fmt="%04i"),N,
-                                    # dump the vlu in summary fun
-                                    self.style(vlu.summary())))
-
+                                line = conf.color_theme.id(self.SUM, fmt="%04i")
+                                                        # dump the vlu in summary fun
+                                print(f"{B}[ {line} ]{N} {self.style(vlu.summary())}\n{' '*11}{G+'MAC'+N}\t{vlu.dst} {B}TO{N} {vlu.src}")
+                              
                                 # open packet and reading    
                                 if 'Payload' in self.style(vlu.summary()):
                                     # convrt packet string to hex
@@ -132,17 +137,29 @@ class WIR:
         return text
         
 
+def _update_():
+    try:
+        print(f'{G}==> Plaes Wite .....{N}')
+        getoutput('wget https://github.com/HathemAhmed/Eye_network/archive/master.zip')
+        getoutput('unzip master.zip&&rm master.zip')
+        print('[ OK ] Update for ==> ./Eye_network-master/')
+    except Exception as e:
+        print(f'[ {R}-{N} ] Error {e}')
+
 @click.command()
 @click.option('-m','--model',type=click.STRING,help='Model listen like wlan0 , eth0 , etc...')
 @click.option('-t','--timeout', default=5,type=click.INT, help='Number timeout for exit for the script')
 @click.option('-H','--hexdump', is_flag=True,help='Acts in the form of hexdump')
 @click.option('-f','--filter', default='any',type=click.STRING, help='Filter types TCP or UDP')
 @click.option('-w','--word', default=None, help='Find Any word an the packets')
+@click.option('-u','--update', is_flag=True, help='update the script')
 @click.version_option(help='v0.1')
 @click.help_option(help='For the assistant')
-
-def main(model, timeout, hexdump, filter, word):
+def main(model, timeout, hexdump, filter, word, update):
     """This program will listen to all the connections in your device like wlan0 or eth0, etc ..."""
+   
+    if update is True:_update_();exit()
+
     try:
         get_wifi = WIR(model, timeout, hexdump, filter,word).get_hex_ips()
     except scapy.error.Scapy_Exception:
