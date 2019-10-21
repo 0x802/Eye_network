@@ -97,7 +97,7 @@ class WIR:
                                     # password if in packet
                                     if self.word != None and self.word in self.use_data:
                                         # save the packet
-                                        with  open('findword.bk', 'a') as f:f.write(f'DES: {vlu.dst:<25}SRC: {vlu.src}\n{self.use_data}\n')
+                                        with  open('{self.word[0:len(self.word)//2]}.bk', 'a') as f:f.write(f'DES: {vlu.dst:<25}SRC: {vlu.src}\n{self.use_data}\n')
                                 # sum numbers try or loop or bk 
                                 self.SUM+=1
                         else:
