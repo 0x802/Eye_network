@@ -38,7 +38,6 @@ except ImportError:
     exit()
 
 
-# Color
 R = '\033[1;31m'
 T = '\033[1;33m'
 B = '\033[1;34m'
@@ -111,9 +110,7 @@ class WIR:
 
             print(f'{R}Sorry this is Big {self.SUM*60} Noses {N}')
             main()
- 
-        
-                    
+   
         except RuntimeError:
             exit()
 
@@ -153,7 +150,7 @@ def _update_():
 @click.option('-f','--filter', default='any',type=click.STRING, help='Filter types TCP or UDP')
 @click.option('-w','--word', default=None, help='Find Any word an the packets')
 @click.option('-u','--update', is_flag=True, help='update the script')
-@click.version_option(help='v0.1')
+@click.version_option(help='v0.2')
 @click.help_option(help='For the assistant')
 def main(model, timeout, hexdump, filter, word, update):
     """This program will listen to all the connections in your device like wlan0 or eth0, etc ..."""
